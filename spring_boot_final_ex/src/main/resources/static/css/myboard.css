@@ -1,0 +1,59 @@
+@charset "UTF-8";
+body{
+	width:100%;
+	height:100%;
+/* 	background-color: rgba(206 212 218);	 */
+}
+
+table { 
+		width:1280px;
+	    margin:auto;
+		position:relative;
+		top:50px;
+		table-layout: fixed;
+		text-align:center;
+		background-color:red;
+	}
+
+td{
+		overflow:hidden;
+		white-space : nowrap;
+		text-overflow: ellipsis;
+		height:35px;
+		background-color:orange;
+		
+}
+th{
+	background-color:white;
+}
+#deleteBoard{
+position:relative;
+z-index:20;
+background-color:#EDDBC3;
+color:black;
+	border:none;
+	border-radius: 8px;
+	font-family: 'Do Hyeon', sans-serif;
+	font-size: 20px;
+	
+}
+
+a{
+	text-decoration:none;
+	
+}
+#nav-bar{
+	float:left;
+	width:1280px;
+}
+#nav_m{
+	width:1280px;
+	height:800px;
+	background-color:orange;
+}
+.nav-item{
+	width:256px;
+	margin:0;
+}
+
+

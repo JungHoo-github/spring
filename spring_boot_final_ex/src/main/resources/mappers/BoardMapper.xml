@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="spring_boot_final.dao.IBoardDAO">
+	<resultMap  id="boardresult" type="spring_boot_final.model.BoardVO">
+  			<result property="brdNo" column="brdNo" />
+  			<result property="brdTitle" column="brdTitle" />
+  			<result property="memNo" column="memNo" />
+  			<result property="memId" column="memId" />
+  			<result property="brdCon" column="brdCon" />	
+  			<result property="brdImg" column="brdImg" />
+  			<result property="brdTag" column="brdTag" />
+  			<result property="tagNo" column="tagNo" />	
+  			<result property="tagName" column="tagName" />	
+  		</resultMap> 
+  		
+	<select id="boardList" parameterType="string"
+                  resultType="spring_boot_final.model.BoardVO">
+  				select * from board left join member on board.memNo = member.memNo order by board.brdNo=#{brdNo} asc
+  	</select> 
+  	<select id="myBoard" parameterType="int"
+                  resultType="spring_boot_final.model.BoardVO">
+  				select * from board WHERE memNo=#{memNo} 
+  	</select>
+  <!-- 	페이징  -->
+  	
+  	<!-- 총 게시글 개수 출력, 검색결과 반영 -->
+  	<select id="countBoard" parameterType="hashMap" resultType="int">
+  		SELECT COUNT(*) FROM board
+
+  	</select>
+  	<!--페이징 처리 후 게시글 조회  	 -->
+  	<select id="selectBoard" parameterType="hashMap" resultType="spring_boot_final.model.BoardVO">
+  	SELECT * 
+		FROM (
+			SELECT @ROWNUM:=@ROWNUM +1 AS RN, Q.* 
+				FROM (
+						SELECT * FROM (
+                        select a.brdNo, a.brdImg,a.brdCon, a.brdTitle, a.memNo,a.brdDate, b.memId from board as a inner join member as b on a.memNo=b.memNo) Q
+						ORDER BY brdNo DESC 
+						)Q, (SELECT @ROWNUM:=0)A
+						)B
+						
+				WHERE RN BETWEEN #{start} AND #{end}
+  	</select>
+<!-- 
+  	  -->
+	<insert id="insertBoard" parameterType="spring_boot_final.model.BoardVO">
+  			INSERT INTO board (brdNo, brdTitle, memNo, brdCon, brdImg, brdTag, brdRecommend)
+  			VALUES (#{brdNo}, #{brdTitle}, #{memNo}, #{brdCon}, #{brdImg}, #{brdTag}, 0)
+  	</insert>
+  	
+  	<select id="detailView" parameterType="string"
+   				resultType="spring_boot_final.model.BoardVO">
+  		select * from board left join member on board.memNo = member.memNo where brdNo=#{brdNo} ;
+   </select>
+   <delete id="deleteBoard"  parameterType="string">
+  			DELETE FROM board WHERE brdNo=#{brdNo}
+  </delete>
+  <update id="updateBoard" parameterType="spring_boot_final.model.BoardVO">
+		update board
+		set
+			brdNo=#{brdNo},
+			brdTitle=#{brdTitle},
+			memNo=#{memNo},
+			brdCon=#{brdCon},
+			brdImg=#{brdImg},
+			brdTag=#{brdTag}
+		where brdNo=#{brdNo}
+	</update>
+
+
+	<update id="recommendUp" parameterType="spring_boot_final.model.BoardVO">
+		update board
+		set brdRecommend = brdRecommend+1 
+		where brdNo = #{brdNo} 
+ 
+	</update>
+	
+	<!-- ////////////////////tag/////////////////////////////// -->
+	<select id="selectTag" parameterType="string"
+                  resultType="spring_boot_final.model.BoardVO">
+  				SELECT tag.tagName FROM tag
+  	</select>
+    <select id="selectRecipe" parameterType="string"
+                  resultType="spring_boot_final.model.BoardVO">
+  			SELECT * FROM board WHERE brdTag like '%${tag.tagName}%'
+  	</select> 
+  	
+	<select id="selectTagList" parameterType="string"
+                  resultType="spring_boot_final.model.BoardVO">
+  			select * from board left join member on board.memNo = member.memNo 
+  	 WHERE brdTag like '%${tagName}%'
+  	</select> 
+</mapper>

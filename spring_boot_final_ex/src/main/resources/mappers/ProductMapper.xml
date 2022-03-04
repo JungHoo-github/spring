@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="spring_boot_final.dao.IProductDAO">
+   
+   <!--  상세 구매 페이지 이동 -->
+   <select id="productbuy" parameterType="int"
+   				resultType="spring_boot_final.model.ProductVO">
+  		SELECT * FROM product WHERE prdNo=#{prdNo}
+   </select>
+    <select id="prdTagSelect" parameterType="String"
+   				resultType="spring_boot_final.model.ProductVO">
+  		SELECT * FROM product WHERE prdTag=#{prdTag}
+   </select>
+   
+   <select id="getProductNoName" resultType="spring_boot_final.model.ProductVO">
+   	SELECT prdNo, prdName FROM product WHERE prdNo=#{prdNo}
+   
+   </select>
+  
+   <select id="listAllProduct" resultType="spring_boot_final.model.ProductVO">
+   	SELECT * FROM product ORDER BY  prdNo		<!-- 쿼리 변경 -->
+   </select>
+
+  </mapper>

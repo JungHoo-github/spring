@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="spring_boot_final.dao.IMemberDAO">
+	<resultMap id="memResult" type="spring_boot_final.model.MemberVO">
+	    <result property="memNo" column="memNo" />
+		<result property="memId" column="memId" />
+		<result property="memPwd" column="memPwd" />
+		<result property="memName" column="memName" />
+		<result property="memEmail" column="memEmail" />
+		<result property="memJoinDate" column="memJoinDate" />
+		<result property="memHP" column="memHP" />
+		<result property="memZipcode" column="memZipcode" />
+		<result property="memAddress1" column="memAddress1" />
+		<result property="memAddress2" column="memAddress2" />
+		<result property="memAllergyInfo" column="memAllergyInfo" />
+	</resultMap>
+		
+	
+	<!-- 전체 회원 -->
+  		<select id="myPage" resultType="spring_boot_final.model.MemberVO" parameterType="int">
+  			SELECT * FROM member WHERE memNo=#{memNo}
+  		</select> 
+  		<!-- 로그인 체크! -->
+  		<select id="loginCheck" resultMap="memResult" parameterType="hashmap">
+		SELECT * FROM member WHERE memId=#{id} AND memPwd=#{pwd}
+	</select> 
+	<!-- 회원정보 수정 -->
+		<update id="updateMyPage" parameterType="spring_boot_final.model.MemberVO">
+		UPDATE member SET memPwd = #{memPwd}, memName = #{memName}, 
+						  memEmail = #{memEmail},
+						  memHP = #{memHP}, memZipcode = #{memZipcode},
+						  memAddress1 = #{memAddress1},memAddress2 = #{memAddress2},
+						  memAllergyInfo = #{memAllergyInfo}
+		WHERE memNo = #{memNo}
+	</update>
+	<!-- 회원 탈퇴 -->
+	<delete id="deleteMyPageForm" parameterType="int">
+		DELETE FROM member WHERE memNo=#{memNo}
+	</delete>	
+</mapper>

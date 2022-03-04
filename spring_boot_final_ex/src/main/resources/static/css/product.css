@@ -1,0 +1,81 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+*{font-family: 'Do Hyeon', sans-serif;}
+/* product.css */
+#productBox {
+	position: relative;
+	bottom: 40px;
+	text-align: center;
+	width: 1200px;
+	height: 700px;
+	background: white;
+	padding: 40px;
+	padding-top: 20px;
+}
+
+#productBox .product {
+	display: inline-block;
+	width: 100%;
+	margin-top: 20px;
+}
+
+#productBox .product div {
+	display: inline-block;
+	width: 303px;
+	height: 303px;
+	border: solid 1px #cccccc;
+	margin: 10px;
+}
+
+#productBox .product div img {
+	width: 100%;
+	height: 100%;
+}
+
+#productBox .product div:hover {
+	opacity: 0.7;
+	border: solid 1px red;
+}
+
+#productinfo2 {
+	width: 300px;
+	height: 300px;
+}
+
+/* ProductList */
+section{
+	width:1000px;
+}
+#box{
+	background-color: rgb(212,116,19);
+}
+#prdListImg {	
+	border:none;
+	width: 175px;
+	height: 200px;
+}
+#prdImgCard{
+	margin:5px;
+	
+}
+
+#sideBar {
+	margin-right: 25px;
+	text-align:center;
+	background-color: #ffecd1;
+	position: relative;
+	height:1200px;
+}
+
+#sideBar button {
+	position:relative;
+	width:300px;
+	font-size: 20px;
+	border: none;
+	background: none;
+}
+#sideBar button:hover {
+	font-size: 20px;
+	border-bottom: solid 1px;
+	background: none;
+}

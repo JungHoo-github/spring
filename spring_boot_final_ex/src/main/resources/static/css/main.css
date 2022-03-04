@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+#headerBox{
+	height:120px;
+	line-height:120px; /* 수직으로 가운데 정렬효과*/
+	padding:0;
+	 display : block ;
+  text-align : center ;
+	
+}
+
+#logoBox {
+	float:left;
+	height:120px;
+	line-height:120px;
+	
+}
+#logoImg{
+		  display : inline;
+}
+
+#anni {
+	display : block ;
+  text-align : center ;
+	width:400px;
+	height:250px;
+}

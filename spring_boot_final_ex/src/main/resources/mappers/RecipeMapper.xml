@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="spring_boot_final.dao.IRecipeDAO">
+   
+   <!--  레시피 페이지 이동 -->
+   <select id="recipeinfo" parameterType="int"
+   				resultType="spring_boot_final.model.RecipeVO">
+  		SELECT * FROM recipe WHERE rcpNo=#{rcpNo}
+   </select>
+   
+   <select id="recipeContent" resultType="spring_boot_final.model.RecipeVO">
+   select * from recipe where rcpNo = #{rcpNo}
+   </select>
+
+  </mapper>

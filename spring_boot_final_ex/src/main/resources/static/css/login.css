@@ -1,0 +1,105 @@
+body {
+	margin : 0;
+	text-align : center;
+}
+
+section {
+	padding: 50px;
+}
+
+
+
+.login-title {
+	background-color:white;
+	border-radius:10px;
+	padding:20px;
+	width:600px;
+	height:240px;
+	margin-right:auto;
+	margin-left:auto;
+	
+}
+.login{
+	margin-right:auto;
+	margin-left:auto;
+	
+}
+h3 {
+	color: black;
+	font-size: 70px;
+}
+
+.form{
+	display: inline-block;
+          text-align: center;
+          padding:20px;
+}
+.title {
+	margin-top: 50px;
+}
+th {
+	padding:8px;
+}
+
+.form1 {
+	justify-content: center;
+	background-color :orange;
+	width : 810px;
+	height : 505px;
+	padding : 30px;
+	border-radius : 23px;
+	display : block;
+	margin-left : auto;
+	margin-right : auto;
+	margin-top : 80px;
+	color: black;
+}
+
+.text { 
+
+	font-size : 15px;
+	border-radius : 10px;
+	padding : 10px;
+	border : none;
+	margin-top : 5px;
+	border: 1px solid #000000;
+	box-sizing: border-box;
+	border-radius: 4px;
+	margin-bottom : 5px;
+}
+input {
+	width:200px;
+	height:30px;
+	box-sizing:border-box;
+	padding:2px;
+}
+input.id{
+	border:solid 3px orange;
+	border-radius:8px;
+	height:35px;
+	
+}
+input.pwd{
+	border:solid 3px orange;
+	border-radius:8px;
+	height:35px;
+}
+input.sub{
+	width:100px;
+	padding:2px;
+	border-radius:8px;
+	background-color:orange;
+	border:solid 2px orange;
+	
+	
+}
+input.reset{
+	width:100px;
+	padding:2px;
+	border-radius:8px;
+	background-color:orange;
+	border:solid 2px orange;
+	
+}
+
+
