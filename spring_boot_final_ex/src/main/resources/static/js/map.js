@@ -1,194 +1,78 @@
 /**
  * 
  */
-// 마커를 클릭했을 때 해당 장소의 상세정보를 보여줄 커스텀오버레이입니다
-var placeOverlay = new kakao.maps.CustomOverlay({zIndex:1}), 
-    contentNode = document.createElement('div'), // 커스텀 오버레이의 컨텐츠 엘리먼트 입니다 
-    markers = [], // 마커를 담을 배열입니다
-    currCategory = ''; // 현재 선택된 카테고리를 가지고 있을 변수입니다
- 
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-    mapOption = {
-        center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
-        level: 5 // 지도의 확대 레벨
-    };  
 
-// 지도를 생성합니다    
-var map = new kakao.maps.Map(mapContainer, mapOption); 
 
-// 장소 검색 객체를 생성합니다
-var ps = new kakao.maps.services.Places(map); 
+$(function() {
+	
+	initMap();
+	
+});
 
-// 지도에 idle 이벤트를 등록합니다
-kakao.maps.event.addListener(map, 'idle', searchPlaces);
 
-// 커스텀 오버레이의 컨텐츠 노드에 css class를 추가합니다 
-contentNode.className = 'placeinfo_wrap';
+function initMap() { 
+	
+	var areaArr = new Array();  // 지역을 담는 배열 ( 지역명/위도경도 )
+	areaArr.push(
+			/*지역구 이름*/			/*위도*/					/*경도*/				
+		 {location : '우주식품' , lat : '37.493184' , lng : '127.117412', address :'서울특별시 송파구 양재대로 932 | 서울특별시 송파구 가락동 600' ,hp : '02-407-0450',ctg :'식료품점', inter : 'http://www.woojoofood.co.kr' , img : 'images/woojoo.jpg' },  // 우주식품
+		 {location : '방산시장 제과제빵시장' , lat : '37.568523' , lng : '127.001494', address:'서울특별시 중구 주교동 을지로33길 18-1 | 서울특별시 중구 주교동 250-1', hp : '02-000-0000', ctg:'종합시장',inter : 'http://www.bangsanmarket.net', img : 'images/bangsan.jpg'},  // 방산시장
+		 {location : '베이킹파티' , lat : '37.298797' , lng : '126.968761',address:'경기도 수원시 장안구 율전로 105 | 수원시 장안구 율전동 305-22 3층', hp : '031-269-8226', ctg:'제빵용품점',inter : 'http://www.bakingparty.net', img : 'images/party.jpg'},  // 베이킹파티
+		 {location : '비엔씨마켓 고속터미널점' , lat : '37.507795' , lng : '127.007857',address:'서울특별시 서초구 반포4동 신반포로 194 | 서초구 반포동 19-4', hp : '02-535-2703', ctg:'제빵용품점',inter : 'http://www.bncmarket.com', img : 'images/go.jpg'},  // 고속터미널점
+		 {location : '비엔씨마켓 홍대점' , lat : '37.556272' , lng : '126.928340',address:'서울특별시 마포구 서교동 와우산로 29나길 13 | 마포구 서교동 336-21', hp : '02-333-2705', ctg:'제빵용품점',inter : 'http://www.bncmarket.com',  img : 'images/hong.jpg'},  // 홍대점
+		 {location : '바한스' , lat : '35.221061' , lng : '128.676572',address:'경상남도 창원시 성산구 중앙대로 61번길 3 | 성산구 중앙동 100-1', hp : '055-274-2244', ctg:'대형슈퍼마켓',inter : 'http://www.bhans.co.kr', img : 'images/bihans.jpg'},  // 바한스
+		 {location : '베이킹프라자' , lat : '35.100136' , lng : '129.027401' ,address:'부산광역시 중구 중구로 23번길 8-1 | 중구 부평동1가 33-1', hp : '051-245-4478', ctg:'제빵용품점',inter : 'http://www.베이킹프라자.com', img : 'images/busan.jpg'},  // 베이킹프라자
+		 
+	);
+	
+	
+	
+	let markers = new Array(); // 마커 정보를 담는 배열
+	let infoWindows = new Array(); // 정보창을 담는 배열
+	
+	var map = new naver.maps.Map('map', {
+        center: new naver.maps.LatLng(37.552758094502494, 126.98732600494576), //지도 시작 지점
+        zoom: 15
+    });
+	
+	
+	
+	
+	for (var i = 0; i < areaArr.length; i++) {
+		// 지역을 담은 배열의 길이만큼 for문으로 마커와 정보창을 채워주자 !
 
-// 커스텀 오버레이의 컨텐츠 노드에 mousedown, touchstart 이벤트가 발생했을때
-// 지도 객체에 이벤트가 전달되지 않도록 이벤트 핸들러로 kakao.maps.event.preventMap 메소드를 등록합니다 
-addEventHandle(contentNode, 'mousedown', kakao.maps.event.preventMap);
-addEventHandle(contentNode, 'touchstart', kakao.maps.event.preventMap);
-
-// 커스텀 오버레이 컨텐츠를 설정합니다
-placeOverlay.setContent(contentNode);  
-
-// 각 카테고리에 클릭 이벤트를 등록합니다
-addCategoryClickEvent();
-
-// 엘리먼트에 이벤트 핸들러를 등록하는 함수입니다
-function addEventHandle(target, type, callback) {
-    if (target.addEventListener) {
-        target.addEventListener(type, callback);
-    } else {
-        target.attachEvent('on' + type, callback);
-    }
-}
-
-// 카테고리 검색을 요청하는 함수입니다
-function searchPlaces() {
-    if (!currCategory) {
-        return;
-    }
+	    var marker = new naver.maps.Marker({
+	        map: map,
+	        title: areaArr[i].location, // 지역구 이름 
+	        position: new naver.maps.LatLng(areaArr[i].lat , areaArr[i].lng) // 지역구의 위도 경도 넣기 
+	    });
+	    
+	    /* 정보창 */
+		 var infoWindow = new naver.maps.InfoWindow({
+		     content: '<div style="width:550px;padding:10px;"><b>' + areaArr[i].location + '<hr></b>'+ '<img src=' + areaArr[i].img + '>' + '</b><br>'+ '๑ ' + areaArr[i].ctg + '</b><br>'+ '๑ ' + areaArr[i].address + '</b><br>'+ '๑ ' + areaArr[i].hp+  '</b><br>'+ '๑ ' + '<a href='+ areaArr[i].inter + '>' + areaArr[i].inter + '</b><br>  </div>'
+		     
+		 }); // 클릭했을 때 띄워줄 정보 HTML 작성
+	    		 markers.push(marker); // 생성한 마커를 배열에 담는다.
+		 infoWindows.push(infoWindow); // 생성한 정보창을 배열에 담는다.
+	}
     
-    // 커스텀 오버레이를 숨깁니다 
-    placeOverlay.setMap(null);
+	 
+    function getClickHandler(seq) {
+		
+            return function(e) {  // 마커를 클릭하는 부분
+                var marker = markers[seq], // 클릭한 마커의 시퀀스로 찾는다.
+                    infoWindow = infoWindows[seq]; // 클릭한 마커의 시퀀스로 찾는다
 
-    // 지도에 표시되고 있는 마커를 제거합니다
-    removeMarker();
+                if (infoWindow.getMap()) {
+                    infoWindow.close();
+                } else {
+                    infoWindow.open(map, marker); // 표출
+                }
+    		}
+    	}
     
-    ps.categorySearch(currCategory, placesSearchCB, {useMapBounds:true}); 
-}
-
-// 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
-function placesSearchCB(data, status, pagination) {
-    if (status === kakao.maps.services.Status.OK) {
-
-        // 정상적으로 검색이 완료됐으면 지도에 마커를 표출합니다
-        displayPlaces(data);
-    } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
-        // 검색결과가 없는경우 해야할 처리가 있다면 이곳에 작성해 주세요
-
-    } else if (status === kakao.maps.services.Status.ERROR) {
-        // 에러로 인해 검색결과가 나오지 않은 경우 해야할 처리가 있다면 이곳에 작성해 주세요
-        
+    for (var i=0, ii=markers.length; i<ii; i++) {
+    	console.log(markers[i] , getClickHandler(i));
+        naver.maps.Event.addListener(markers[i], 'click', getClickHandler(i)); // 클릭한 마커 핸들러
     }
 }
-
-// 지도에 마커를 표출하는 함수입니다
-function displayPlaces(places) {
-
-    // 몇번째 카테고리가 선택되어 있는지 얻어옵니다
-    // 이 순서는 스프라이트 이미지에서의 위치를 계산하는데 사용됩니다
-    var order = document.getElementById(currCategory).getAttribute('data-order');
-
-    
-
-    for ( var i=0; i<places.length; i++ ) {
-
-            // 마커를 생성하고 지도에 표시합니다
-            var marker = addMarker(new kakao.maps.LatLng(places[i].y, places[i].x), order);
-
-            // 마커와 검색결과 항목을 클릭 했을 때
-            // 장소정보를 표출하도록 클릭 이벤트를 등록합니다
-            (function(marker, place) {
-                kakao.maps.event.addListener(marker, 'click', function() {
-                    displayPlaceInfo(place);
-                });
-            })(marker, places[i]);
-    }
-}
-
-// 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
-function addMarker(position, order) {
-    var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
-        imageSize = new kakao.maps.Size(27, 28),  // 마커 이미지의 크기
-        imgOptions =  {
-            spriteSize : new kakao.maps.Size(72, 208), // 스프라이트 이미지의 크기
-            spriteOrigin : new kakao.maps.Point(46, (order*36)), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
-            offset: new kakao.maps.Point(11, 28) // 마커 좌표에 일치시킬 이미지 내에서의 좌표
-        },
-        markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imgOptions),
-            marker = new kakao.maps.Marker({
-            position: position, // 마커의 위치
-            image: markerImage 
-        });
-
-    marker.setMap(map); // 지도 위에 마커를 표출합니다
-    markers.push(marker);  // 배열에 생성된 마커를 추가합니다
-
-    return marker;
-}
-
-// 지도 위에 표시되고 있는 마커를 모두 제거합니다
-function removeMarker() {
-    for ( var i = 0; i < markers.length; i++ ) {
-        markers[i].setMap(null);
-    }   
-    markers = [];
-}
-
-// 클릭한 마커에 대한 장소 상세정보를 커스텀 오버레이로 표시하는 함수입니다
-function displayPlaceInfo (place) {
-    var content = '<div class="placeinfo">' +
-                    '   <a class="title" href="' + place.place_url + '" target="_blank" title="' + place.place_name + '">' + place.place_name + '</a>';   
-
-    if (place.road_address_name) {
-        content += '    <span title="' + place.road_address_name + '">' + place.road_address_name + '</span>' +
-                    '  <span class="jibun" title="' + place.address_name + '">(지번 : ' + place.address_name + ')</span>';
-    }  else {
-        content += '    <span title="' + place.address_name + '">' + place.address_name + '</span>';
-    }                
-   
-    content += '    <span class="tel">' + place.phone + '</span>' + 
-                '</div>' + 
-                '<div class="after"></div>';
-
-    contentNode.innerHTML = content;
-    placeOverlay.setPosition(new kakao.maps.LatLng(place.y, place.x));
-    placeOverlay.setMap(map);  
-}
-
-
-// 각 카테고리에 클릭 이벤트를 등록합니다
-function addCategoryClickEvent() {
-    var category = document.getElementById('category'),
-        children = category.children;
-
-    for (var i=0; i<children.length; i++) {
-        children[i].onclick = onClickCategory;
-    }
-}
-
-// 카테고리를 클릭했을 때 호출되는 함수입니다
-function onClickCategory() {
-    var id = this.id,
-        className = this.className;
-
-    placeOverlay.setMap(null);
-
-    if (className === 'on') {
-        currCategory = '';
-        changeCategoryClass();
-        removeMarker();
-    } else {
-        currCategory = id;
-        changeCategoryClass(this);
-        searchPlaces();
-    }
-}
-
-// 클릭된 카테고리에만 클릭된 스타일을 적용하는 함수입니다
-function changeCategoryClass(el) {
-    var category = document.getElementById('category'),
-        children = category.children,
-        i;
-
-    for ( i=0; i<children.length; i++ ) {
-        children[i].className = '';
-    }
-
-    if (el) {
-        el.className = 'on';
-    } 
-} 
