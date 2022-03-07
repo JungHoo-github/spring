@@ -17,7 +17,7 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/layout/top.jsp" flush='true' />
-<div id="map" style="width:800px;height:800px;margin:0px auto;"></div>
+<div id="map" style="width:800px;height:800px;"></div>
      <jsp:include page="/WEB-INF/views/layout/bottom.jsp" flush='true' />
 
 </body>
