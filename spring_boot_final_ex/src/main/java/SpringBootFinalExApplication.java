@@ -10,11 +10,15 @@ import spring_boot_final.controller.CartController;
 import spring_boot_final.controller.MainController;
 import spring_boot_final.controller.MemberController;
 import spring_boot_final.controller.ProductController;
+import spring_boot_final.controller.RecipeinfoController;
+import spring_boot_final.controller.ReplyController;
 import spring_boot_final.controller.ReviewController;
 import spring_boot_final.dao.IBoardDAO;
 import spring_boot_final.dao.ICartDAO;
 import spring_boot_final.dao.IMemberDAO;
 import spring_boot_final.dao.IProductDAO;
+import spring_boot_final.dao.IRecipeDAO;
+import spring_boot_final.dao.IReplyDAO;
 import spring_boot_final.dao.IReviewDAO;
 
 @SpringBootApplication
@@ -24,12 +28,16 @@ import spring_boot_final.dao.IReviewDAO;
 @ComponentScan(basePackageClasses=CartController.class)
 @ComponentScan(basePackageClasses=ProductController.class)
 @ComponentScan(basePackageClasses=ReviewController.class)
+@ComponentScan(basePackageClasses=RecipeinfoController.class)
+@ComponentScan(basePackageClasses=ReplyController.class)
 
 @MapperScan(basePackageClasses=IMemberDAO.class)
 @MapperScan(basePackageClasses=IBoardDAO.class)
 @MapperScan(basePackageClasses=ICartDAO.class)
 @MapperScan(basePackageClasses = IProductDAO.class)
 @MapperScan(basePackageClasses = IReviewDAO.class)
+@MapperScan(basePackageClasses = IReplyDAO.class)
+@MapperScan(basePackageClasses = IRecipeDAO.class)
 
 public class SpringBootFinalExApplication {
 
