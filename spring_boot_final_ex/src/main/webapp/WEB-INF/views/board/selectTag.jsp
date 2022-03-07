@@ -43,7 +43,7 @@ font-family: 'Do Hyeon', sans-serif;
 }
 #tagList {
 width:70;
-height:200px;
+height:300px;
 positon:center;
 text-align:left;
 font-size:25px;
@@ -51,20 +51,36 @@ margin-left:20%;
 }
 .tags{
 	border-radius: 8px;
+	background-color:#ffcc6c;
+	color:black;
+	display:inline-block;
+	font-family: 'Do Hyeon', sans-serif;
+}
+.tags:active{
+	border-radius: 8px;
 	background-color:orange;
 	color:black;
 	display:inline-block;
 	font-family: 'Do Hyeon', sans-serif;
 }
+
 a {
 text-decoration-line:none;
+color: black;
+}
+.tags a {
+
+text-decoration-line:none;
+font-size:23px;
 color: black;
 }
 h2{
 text-align:center;
 }
 p{
-text-align:center;}
+text-align:left;
+color:white;
+}
 span{
 display:block;
 color:black;
@@ -78,10 +94,9 @@ display:inline-block;
 </style>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/layout/top.jsp" flush='true' /> 
 	<div id="wrap">
-		<h2>TAG LIST</h2>
-		<p>원하는 태그를 선택해주세요!</p>
-		<hr>
+		<br><br>
 			<div id="tagList">
 			
 				<div class="menu">
@@ -94,34 +109,37 @@ display:inline-block;
 				</div>
 				<div class="menu">
 				<c:forEach var="tag" items="${selectTag}" begin="0" end="1" step="1" varStatus="">
-					<div class="tags"><a href="javascript:selectTag('${tag.tagName}');">${tag.tagName}</a></div>
+					<div class="tags"><a href="javascript:selectTag('${tag.tagName}');">&nbsp${tag.tagName}&nbsp</a></div>
 				</c:forEach>
 
 				<br>
 				<c:forEach var="tag" items="${selectTag}" begin="2" end="4" step="1" varStatus="">
-					<div class="tags"><a href="javascript:selectTag('${tag.tagName}');">${tag.tagName}</a></div>
+					<div class="tags"><a href="javascript:selectTag('${tag.tagName}');">&nbsp${tag.tagName}&nbsp</a></div>
 				</c:forEach>
 				<br>
 				<c:forEach var="tag" items="${selectTag}" begin="5" end="8" step="1" varStatus="">
-					<div class="tags"><a href="javascript:selectTag('${tag.tagName}');">${tag.tagName}</a></div>
+					<div class="tags"><a href="javascript:selectTag('${tag.tagName}');">&nbsp${tag.tagName}&nbsp</a></div>
 				</c:forEach>
 				<br>
 				<c:forEach var="tag" items="${selectTag}" begin="9" end="17" step="1" varStatus="">
-					<div class="tags"><a href="javascript:selectTag('${tag.tagName}');">${tag.tagName}</a></div>
+					<div class="tags"><a href="javascript:selectTag('${tag.tagName}');">&nbsp${tag.tagName}&nbsp</a></div>
 				</c:forEach>
 				<br>
 				<c:forEach var="tag" items="${selectTag}" begin="18" end="21" step="1" varStatus="">
-					<div class="tags"><a href="javascript:selectTag('${tag.tagName}');">${tag.tagName}</a></div>
+					<div class="tags"><a href="javascript:selectTag('${tag.tagName}');">&nbsp${tag.tagName}&nbsp</a></div>
 				</c:forEach>
 				<br>
 				<c:forEach var="tag" items="${selectTag}" begin="22" end="24" step="1" varStatus="">
-					<div class="tags"><a href="javascript:selectTag('${tag.tagName}');">${tag.tagName}</a></div>
+					<div class="tags"><a href="javascript:selectTag('${tag.tagName}');">&nbsp${tag.tagName}&nbsp</a></div>
 				</c:forEach>
 				</div>
+				<br><br>
+				<p>원하는 태그를 선택해주세요!</p>
 			</div> 
 	
 			<div id="searchResultbox"></div>
-		
+		<br><br>
 	</div>
+	  <jsp:include page="/WEB-INF/views/layout/bottom.jsp" flush='true' />
 </body>
 </html>
