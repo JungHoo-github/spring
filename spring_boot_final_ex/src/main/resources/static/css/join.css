@@ -1,0 +1,161 @@
+.point-color{
+    color: red;
+}
+
+.error{
+    font-size: 11px;
+    height: 20px;
+    color:red;
+    font-weight: 700;
+}
+
+.int {
+    display: block;
+    position: relative;
+    width: 430px;
+    height: 30px;
+    font-size: 15px;
+}
+
+.int_id {
+    display: inline;
+    position: relative;
+    width: 350px;
+    height: 30px;
+    font-size: 15px;
+}
+.int_email {
+    display: inline;
+    position: relative;
+    width: 149px;
+    height: 35px;
+    font-size: 15px;
+}
+.int_email_input {
+    display: inline;
+    position: relative;
+    width: 140px;
+    height: 30px;
+    font-size: 15px;
+}
+
+.int_select {
+    display: inline;
+    position: relative;
+    width: 100px;
+    height: 35px;
+    font-size: 15px;
+}
+.int_select_input {
+    display: inline;
+    position: relative;
+    width: 91px;
+    height: 30px;
+    font-size: 15px;
+}
+
+table{
+    height: 300px;
+    width: 900px;
+    border-top: 2px solid black;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+td{
+    border-bottom: 1px dotted black;
+}
+
+caption{
+    text-align: left;
+}
+
+.Cn:hover{
+    color: black;
+}
+
+.create{
+    width: 800px;
+    text-align: center;
+    padding: 30px;
+    border-bottom: 1px solid black;
+    margin: auto;
+}
+
+.Cn {
+    padding: 10px;
+    text-align: left;
+    font-weight: bold;
+    font-size: 13px;
+    color: gray;
+}
+
+.Cn2 {
+    text-align: left;
+    padding: 20px;
+}
+
+.IdCheckBtu{
+    height: 35px;
+    width: 74px;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    background-color: #333333;
+}
+
+.CreBtu {
+    height: 40px;
+    width: 140px;
+    color: white;
+    font-size: 15px;
+    background-color: rgb(255, 102, 0);
+}
+
+.CelBtu {
+    height: 40px;
+    width: 140px;
+    color: white;
+    font-size: 15px;
+    background-color: #333333;
+}
+
+b{
+    color: #ff3333;
+}
+
+.tooltip {
+    display: inline-block;
+    color: #ff3333;
+    font-weight: bold;
+}
+
+.tooltip-text {
+    display: none;
+    position: absolute;
+    width: auto;
+    height: auto;
+    border: none;
+    padding: 20px;
+    margin-top: 10px;
+    margin-left: -45px;
+    font-size: 14px;
+    color: #708F6A;
+    background: #ddf657;
+    z-index: 1;
+}
+
+.tooltip .tooltip-text::after {
+    content: " ";
+    position: absolute;
+    border-style: solid;
+    border-width: 10px;
+    bottom: 100%;
+    left: 10%;
+    margin-left: -10px;
+    border-color: transparent transparent #ddf657 transparent;
+}
+
+.tooltip:hover .tooltip-text {
+    display: block;
+}

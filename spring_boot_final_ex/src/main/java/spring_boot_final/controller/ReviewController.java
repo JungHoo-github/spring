@@ -22,6 +22,8 @@ public class ReviewController {
 	/* 리뷰 등록 */
 	@PostMapping("/enroll")
 	public void enrollReviewPOST(ReviewVO vo) {
+		
+		System.out.println(vo.getMemNo());
 		service.enrollReview(vo);
 		/*
 		 * System.out.println(vo.getPrdNo()); System.out.println(vo.getMemNo());
@@ -34,7 +36,9 @@ public class ReviewController {
 	/* 존재 : 1 / 존재x : 0 */
 	@PostMapping("/check")
 	public String reviewCheckPOST(ReviewVO vo) {
+		System.out.println(vo.getMemNo());
 		System.out.println(service.checkReview(vo));
+		
 		return service.checkReview(vo);
 	}
 	/* 댓글 페이징 */

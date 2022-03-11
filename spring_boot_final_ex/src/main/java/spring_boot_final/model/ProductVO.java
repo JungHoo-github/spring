@@ -10,9 +10,36 @@ public class ProductVO {
 	private String prdImg;
 	private String prdTag;
 	private double ratingAvg;
+	private String prdtype;
+	private String prdsite;
+	private String prdamount;
+	private String prdcontent;
 	
-	
-	
+
+	public String getPrdtype() {
+		return prdtype;
+	}
+	public void setPrdtype(String prdtype) {
+		this.prdtype = prdtype;
+	}
+	public String getPrdsite() {
+		return prdsite;
+	}
+	public void setPrdsite(String prdsite) {
+		this.prdsite = prdsite;
+	}
+	public String getPrdamount() {
+		return prdamount;
+	}
+	public void setPrdamount(String prdamount) {
+		this.prdamount = prdamount;
+	}
+	public String getPrdcontent() {
+		return prdcontent;
+	}
+	public void setPrdcontent(String prdcontent) {
+		this.prdcontent = prdcontent;
+	}
 	public String getPrdTag() {
 		return prdTag;
 	}

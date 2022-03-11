@@ -39,12 +39,16 @@
 		
 </head>
 <body>
-<div id="wrap">
+		<!-- TOP  -->
+	<jsp:include page="/WEB-INF/views/layout/top.jsp" flush='true' /> 
+<div id="wrap3">
+<div id="main_menu2">
 	<div class="container1">
+	<form method="post" action="<c:url value=" /productInfo/insertCart" />">
 		<div id="productinfo1"><h1 class="page-header">${prd.prdName }</h1>
 		</div>
 		<div id="productinfo2">
-			<img alt="이미지" src="/images/1000.jpg" width="150%" class="img">
+			<img alt="이미지" src="<c:url value='/images/${prd.prdImg }' />" width="150%">
 		</div>
 		
 		<div id="productinfo3" class="rowproductInfo">
@@ -71,6 +75,7 @@
 				<input type="button" value="-" onClick="qtyChange(-1)">
 					<input type="text" id="cartQty" name="cartQty" value="1" size="1" readonly>
 					<input type="button" value="+" onClick="qtyChange(1)"> 개
+					<input type="hidden" name="prdNo" value="${prd.prdNo }">
 			</div>
 			<div class="form-group2">
 				<label>총 금액</label>
@@ -80,12 +85,13 @@
 			<hr>
 			<div id="btn-box">
 				<div style="text-align:center;">
-					<button class="btn-buy">장바구니</button>
+					<input type="submit" id="insertCart" value="장바구니">
 					<button class="btn-buy">구매하기</button>
 				</div>
 			</div>
 			
 		</div>
+		</form>
 	</div>
 		
 	<nav id="topmenu">
@@ -99,10 +105,10 @@
 	<div class="container2">
 		<div id="underproductinfo1">
 			<table id="infortable">
-			<tr><td class="table1">식품의 유형</td><td class="table3">상단라벨참고</td></tr>
-			<tr><td class="table1">생산자 및 소재지</td><td class="table3">상단라벨참고</td></tr>
-			<tr><td class="table2">포장단위별 내용물의  용량(중량), 수량</td><td class="table4">상단라벨참고</td></tr>
-			<tr><td class="table1">원재료명 및 함량</td><td class="table3">상단라벨참고</td></tr>
+			<tr><td class="table1">식품의 유형</td><td class="table3">${prd.prdtype }</td></tr>
+			<tr><td class="table1">생산자 및 소재지</td><td class="table3">${prd.prdsite }</td></tr>
+			<tr><td class="table2">포장단위별 내용물의  용량(중량), 수량</td><td class="table4">${prd.prdamount }</td></tr>
+			<tr><td class="table1">원재료명 및 함량</td><td class="table3">${prd.prdcontent }</td></tr>
 			<tr><td class="table1">소비자상담 관련 전화번호</td><td class="table3">070-1111-1111</td></tr>
 			</table>
 		</div>
@@ -116,7 +122,7 @@
 		</ul>
 	</nav>
 	<div class="container4">
-		<div id="underproductinfo1">
+		<div id="underproductinfo2">
 				<div class="review_button_wrap">
 					<button>리뷰 쓰기</button>
 				</div>
@@ -158,23 +164,15 @@
 			</ul>
 		</nav>
 	<article class="container3">
-		<div id="productBox">
 		<h3>추천상품</h3>
-			<c:forEach items="${prdList}" var="prd" >			
-			   	<div class="rcdBox">
-			   	<table>
-			   		<tr><td><img src="/images/${prd.prdImg}"></td></tr>
-		   			<tr><td><c:out value="${prd.prdNo}"/></td></tr>
-		   			<tr><td><c:out value="${prd.prdName }"/></td></tr>
-		   			<tr><td><c:out value="${prd.prdPrice }"/></td></tr>
-		   			<tr><td><c:out value="${prd.prdCompany }"/></td></tr>
-		   		</table>
-			   	</div>
-			</c:forEach>
-		</div>
 	</article>
 	</div>
+	<div id="sub_menu2"><iframe width="380" height="315" src="https://www.youtube.com/embed/kev30RMy3Xc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	</div>
 	
+	</div>
+				<!-- BOTTOM  -->
+		   <jsp:include page="/WEB-INF/views/layout/bottom.jsp" flush='true' />
 	<script>
 		$(document).ready(function(){
 			/* 리뷰 리스트 출력 */
@@ -189,10 +187,10 @@
 			/* 리뷰쓰기 */
 			 $(".review_button_wrap").on("click", function(e){
 				e.preventDefault();
+
 				
-				const memNo = "${memNo}";
+				const memNo = "${sno}";
 				const prdNo = "${prd.prdNo}";
-				
 				$.ajax({
 					data : {
 						prdNo : prdNo,
@@ -200,6 +198,7 @@
 					},
 					url : '/review/check',
 					type : 'POST',
+					dataType : 'text',
 					success : function(result){
 						
 						if(result ==='1'){
@@ -219,7 +218,7 @@
 			 const cri = {
 				prdNo : '${prd.prdNo}',
 				pageNum : 1,
-				amount : 10
+				amount : 5
 				
 			}
 			 /* 댓글 페이지 이동 버튼 동작 */
@@ -246,7 +245,7 @@
 		 $(document).on('click', '.update_review_btn', function(e){
 			e.preventDefault();
 			let revNo = $(this).attr("href");		 
-			let popUrl = "/reviewUpdate?revNo=" + revNo + "&prdNo=" + '${prd.prdNo}' + "&memNo=" + '${memNo}';	
+			let popUrl = "/reviewUpdate?revNo=" + revNo + "&prdNo=" + '${prd.prdNo}' + "&memNo=" + '${sno}';	
 			let popOption = "width = 490px, height=490px, top=300px, left=300px, scrollbars=yes"	
 			
 			window.open(popUrl,"리뷰 수정",popOption);
@@ -282,7 +281,7 @@
 				
 				const list = obj.list;
 				const pf = obj.pageInfo;
-				const userId = '${memNo}';
+				const userId = '${sno}';
 				//alert(obj.pageInfo.next);
 				/* list */
 				let review_list ='';

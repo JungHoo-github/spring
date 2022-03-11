@@ -3,73 +3,157 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>회원 가입 폼</title>	
-		<link href="<c:url value='/css/join.css'/>" rel="stylesheet" type="text/css">	
-		<script src="<c:url value='/js/jquery-3.6.0.min.js'/>"></script>
-		<script src="<c:url value='/js/memIdCheck.js'/>"></script>
-		<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>	
-		<script src="<c:url value='/js/searchZip.js'/>"></script>	
-	</head>
-	<body>
-	
-		<div id="wrap"> 
-<jsp:include page="/WEB-INF/views/layout/top.jsp" flush='true' />
-		   
-		<!--  회원 가입 폼  -->
-		<section>
-	        <h1 id="title">회원 가입</h1>
-	        <form id="joinForm" name="joinForm" method="post"  action="/join">
-	          <table>
-	            <tr><th> 성명</th><td><input type="text" id="memName" name="memName" ></td></tr>
-	            <tr><th> ID</th><td><input type="text" id="memId" name="memId" > 
-	            		<input type="button" id="idCheck" value="ID 중복 체크"></td></tr>
-	            <tr><th>비밀번호</th><td><input type="password" id="memPwd" name="memPwd"></td></tr>
-	            <tr><th>휴대폰 번호</th><td><input type="text" id="memHp1" name="memHp1" size="3"> 
-	                    - <input type="text" id="memHp2" name="memHp2" size="4">
-	                    - <input type="text" id="memHp3" name="memHp3" size="4"></td></tr>   
-	            <tr><th>학년</th><td><input type="radio" id="memYear1" name="memYear" value="1" >1학년
-	                                     <input type="radio" id="memYear2" name="memYear" value="2">2학년
-	                                     <input type="radio" id="memYear3" name="memYear" value="3">3학년
-	                                     <input type="radio" id="memYear4" name="memYear" value="4">4학년</td></tr>
-	            <tr><th>관심분야</th>
-	                  <td><input type="checkbox"  id="web" name="memInterests" value="웹프로그래밍">웹 프로그래밍
-	                         <input type="checkbox"  id="design" name="memInterests" value="웹디자인">웹 디자인
-	                         <input type="checkbox"  id="bigdata" name="memInterests" value="빅데이터">빅데이터
-	                         <input type="checkbox"  id="java" name="memInterests" value="자바프로그래밍">자바 프로그래밍</td></tr>
-	            <tr><th>학과</th>
-	                  <td><select id="memDepartment" name="memDepartment">
-	                               <option value="">선택하세요</option>
-								   <option value="경영학과">경영학과</option>
-								   <option value="수학과">수학과</option>
-								   <option value="통계학과">통계학과</option>
-	                               <option value="정보통신공학과">정보통신공학과</option>
-								   <option value="중국어과">중국어과</option>	
-								   <option value="컴퓨터학과">컴퓨터학과</option>
-	                          </select></td></tr>
-	             		<tr><th>주소</th>
-								<td colspan="3">
-										<input type="text" id="zipcode" name="zipcode"   size="5" > 
-										<input type="button" id="searchZip" name="searchZip" value="우편번호찾기" readonly><br>
-										<input type="text"  id="address1"  name="address1" size="70" readonly><br> 
-										<input type="text" id="address2"  name="address2" size="70" placeholder="상세 주소 입력">
-								</td></tr>		             
-	             <tr>
-	                <td colspan="2" align="center" id="button">
-	                    <br><input type="submit" value="완료">
-	                    <input type="reset" value="취소">
-	                </td>
-	            </tr>             
-	            </table>
-	      </form>	
-      </section>
-      
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입 창</title>
+    <link href="<c:url value='/css/join.css'/>" rel="stylesheet" type="text/css">
 
-	   
-	      </div>
-     <jsp:include page="/WEB-INF/views/layout/bottom.jsp" flush='true' />
-    </body>
+    <script src="<c:url value='/js/jquery-3.6.0.min.js'/>"></script>
+
+    <script src="<c:url value='/js/join.js'/>"></script>
+    <script src="<c:url value='/js/memIdCheck.js'/>"></script>
+
+</head>
+<body>
+    <section>
+        <div id="joinBox" class="joinForm">
+            <form name="joinForm" id="joinForm"  method="post">
+                <table>
+                    <tr>
+                        <td class="title">
+                        <h1> 회원가입 </h1>
+                        <h4>회원정보입력</h4>
+                        <span class="point-color">
+                            <small>
+                                <em style="margin-left: 30px;">*</em> 는 필수 입력 항목입니다.
+                            </small>
+                        </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="Cn">
+                            <em class="point-color">*</em>
+                            <label for="memId">아이디</label>
+                        </td>
+                        <td class="Cn2">
+                            <input type="text" name="memId" id="memId" class="int_id" placeholder="아이디를 입력해주세요."
+                                onfocus="this.placeholder=''" onblur="this.placeholder='아이디를 입력해주세요.'">
+                            <input class="IdCheckBtu" type="button" value="ID중복체크" id="idCheck">
+                            <div id="idError" class="error"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="Cn">
+                            <em class="point-color">*</em>
+                            <label for="password">비밀번호</label>
+                            <dic class="tooltip"><i class="fas fa-exclamation-triangle"></i>
+                                <div class="tooltip-text">
+                                    <b>
+                                        비밀번호 입력 시 아래 규칙을 참고해주세요!
+                                    </b>
+                                    <p>
+                                        1. 아이디와 비밀번호가 같을 수 없습니다.
+                                    </p>
+                                    <p>
+                                        2. 비밀번호는 영문자,숫자,특수기호의 조합으로
+                                        <b>8~15자리</b>를 사용해야합니다.
+                                    </p>
+                                    <p>
+                                        3. 특수기호는 <b>! @ # $ % ^ * ? _ ~</b>만 사용 가능합니다.
+                                    </p>
+                                </div>
+                            </dic>
+                        </td>
+                        <td class="Cn2">
+                            <input type="password" name="password" id="password" class="int" placeholder="비밀번호를 입력해주세요."
+                                onfocus="this.placeholder=''" onblur="this.placeholder='비밀번호를 입력해주세요.'">
+                            <div id="pwdError" class="error"></div>
+                            <span class="point-color">
+                                <small>
+                                    8~15자리의 영문/숫자/특수문자를 함께 입력해주세요.
+                                </small>
+                            </span>
+                            <input type="password" name="passwordCheck" id="passwordCheck" class="int"
+                                placeholder="비밀번호를 다시 입력해주세요." onfocus="this.placeholder=''"
+                                onblur="this.placeholder='비밀번호를 다시 입력해주세요.'">
+                            <div id="pwdCkError" class="error"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="Cn">
+                            <em class="point-color">*</em>
+                            <label for="name">이름</label>
+                        </td>
+                        <td class="Cn2">
+                            <input type="text" name="name" id="name" class="int" size="35"
+                                placeholder="한글 또는 영문으로 입력해주세요." onfocus="this.placeholder=''"
+                                onblur="this.placeholder='한글 또는 영문으로 입력해주세요.'">
+                            <div id="nameError" class="error"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="Cn">
+                            <em class="point-color">*</em>
+                            <label for="email1">이메일</label>
+                        </td>
+                        <td class="Cn2">
+                            <input type="text" name="email1" id="email1" class="int_email_input" size="6">
+                            <select name="email" class="int_email" id="email2">
+                                <option value="naver.com" selected>naver.com
+                                <option value="gmail.com">gmail.com
+                                <option value="nate.com">nate.com
+                                <option value="hanmail.net">hanmail.net
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="Cn"><label for="address">주소</label></td>
+                        <td class="Cn2">
+                            <input type="text" name="address1" id="address1" class="int" size="35"
+                            placeholder="도로명 주소를 입력해주세요." onfocus="this.placeholder=''"
+                                onblur="this.placeholder='도로명 주소를 입력해주세요.'">
+                            <div id="address1Error" class="error"></div>
+                            <input type="text" name="address2" id="address2" class="int" size="18"
+                            placeholder="상세 주소를 입력해주세요." onfocus="this.placeholder=''"
+                                onblur="this.placeholder='상세 주소를 입력해주세요.'">
+                            <div id="address2Error" class="error"></div>
+                            <input type="text" name="zipcode" id="zipcode" class="int" size="13"
+                            placeholder="우편번호를 입력해주세요." onfocus="this.placeholder=''"
+                                onblur="this.placeholder='우편번호를 입력해주세요.'">
+                            <div id="zipcodeError" class="error"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="Cn"><label for="phone">연락처</label></td>
+                        <td class="Cn2">
+                            <input type="text" name="phone" id="phone" class="int" size="35"
+                            placeholder="- 없이 입력해주세요" onfocus="this.placeholder=''"
+                                onblur="this.placeholder='- 없이 입력해주세요'">
+                            <div id="phoneError" class="error"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="Cn"><label for="allergyInfo">알러지</label></td>
+                        <td class="Cn2">
+                            <input type="text" name="allergyInfo" id="allergyInfo" class="int" size="35"
+                            placeholder="알러지 정보를 기입해 주세요" onfocus="this.placeholder=''"
+                                onblur="this.placeholder='알러지 정보를 기입해 주세요'">
+                            <div id="allergyInfoError" class="error"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="create" colspan="2">
+                            <input class="CelBtu" type="button" value="취    소" onclick="cancel()">
+                            <input class="CreBtu" type="button" value="가    입" onclick="signUpCheck()">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    
+  </section>
+
+  <!-- -->
+
+</body>
 </html>
-
-

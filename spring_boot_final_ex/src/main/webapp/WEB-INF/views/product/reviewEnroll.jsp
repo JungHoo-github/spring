@@ -22,7 +22,7 @@
 			<div class="prdName_div">
 				<h2>${prd.prdName }</h2>
 				<input type="hidden" name="prdNo" id="prdNo" value="${prd.prdNo }">
-				<input type="hidden" name="memNo" id="memNo" value="${memNo }">
+				<input type="hidden" name="memNo" id="memNo" value="${sno }">
 				
 			</div>
 			<div class="rating_div">

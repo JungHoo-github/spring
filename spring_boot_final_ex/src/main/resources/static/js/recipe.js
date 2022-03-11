@@ -27,7 +27,7 @@
 			}
 	});
 	
-	$('#timer_hidden').on('click',function(){
+	/*$('#timer_hidden').on('click',function(){
 		if($('.main_summary2').css("display") == "none"){
 			$('.main_summary2').show();
 			$('.main_summary3').show();
@@ -35,6 +35,6 @@
 			$('.main_summary2').hide();
 			$('.main_summary3').hide();
 		}
-	});
+	});*/
 	
 });

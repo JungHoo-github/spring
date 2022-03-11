@@ -5,13 +5,14 @@ public class ReplyVO {
 	private String repDate;
 	private String repCon;
 	private int memNo;
-	private int brdNo;
+	private int rcpNo;
 	
-	public int getBrdNo() {
-		return brdNo;
+	
+	public int getRcpNo() {
+		return rcpNo;
 	}
-	public void setBrdNo(int brdNo) {
-		this.brdNo = brdNo;
+	public void setRcpNo(int rcpNo) {
+		this.rcpNo = rcpNo;
 	}
 	public int getRepNo() {
 		return repNo;
@@ -37,13 +38,15 @@ public class ReplyVO {
 	public void setMemNo(int memNo) {
 		this.memNo = memNo;
 	}
+	
 	@Override
 	public String toString() {
 		return "ReplyVO [repNo=" + repNo + ", repDate=" + repDate + ", repCon=" + repCon + ", memNo=" + memNo
-				+ ", brdNo=" + brdNo + ", getBrdNo()=" + getBrdNo() + ", getRepNo()=" + getRepNo() + ", getRepDate()="
+				+ ", rcpNo=" + rcpNo + ", getRcpNo()=" + getRcpNo() + ", getRepNo()=" + getRepNo() + ", getRepDate()="
 				+ getRepDate() + ", getRepCon()=" + getRepCon() + ", getMemNo()=" + getMemNo() + ", getClass()="
 				+ getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
+	
 	
 	
 	

@@ -2,35 +2,63 @@
 
 * {margin:0 auto;}
 
-#wrap{
+#wrap3{
 	margin:0 auto;
 	width : 1280px;
 	position:relative;
 }
 
+#main_menu2{
+	margin-left: 2px;
+	width : 895px;
+	float:left;
+	background-color:orange;
+}
+#sub_menu2 {
+	width:380px;
+	height: 2000px;
+	float:left;
+	border:1px dotted blue;
+}
+
 .container1{
-	margin-top : 30px;
-	height:400px;
-	width:70%;
+	background-color:white;
+	border-radius:10px;
+	padding:20px;
+	margin-top : 20px;
+	margin-bottom:20px;
+	height:430px;
+	width:700px;
 }
 
 .container2{
-	margin-top : 30px;
+	background-color:white;
+	border-radius:10px;
+	padding:20px;
+	margin-top : 20px;
+	margin-bottom:20px;
 	height:400px;
-	width:70%;
+	width:700px;
 }
 
 .container3{
-	margin-top : 30px;
-	background-color : #F5ECCE;
-	height:1000px;
-	width:70%;
+	background-color:white;
+	border-radius:10px;
+	padding:20px;
+	margin-bottom:20px;
+	margin-top:20px;
+	height:400px;
+	width:700px;
 }
 
 .container4{
-	margin-top : 30px;
-	height:1000px;
-	width:70%;
+	background-color:white;
+	border-radius:10px;
+	padding:20px;
+	margin-bottom:20px;
+	margin-top:20px;
+	height:500px;
+	width:700px;
 }
 
 .page-header{
@@ -103,7 +131,7 @@
 
 #topmenu {
 	height:50px;
-	width:1088px;
+	width:750px;
 	margin-top : 30px;
 }
 
@@ -119,7 +147,7 @@
 
 #topmenu .move {
 	display:block;
-	width:250px;
+	width:175px;
 	font-size:20px;
 	font-weight:bold;
 	text-decoration:none;
@@ -129,7 +157,7 @@
 
 #topmenu .move1 {
 	display:block;
-	width:250px;
+	width:175px;
 	font-size:20px;
 	font-weight:bold;
 	text-decoration:none;
@@ -139,7 +167,7 @@
 
 #topmenu .move2 {
 	display:block;
-	width:250px;
+	width:175px;
 	font-size:20px;
 	font-weight:bold;
 	text-decoration:none;
@@ -149,7 +177,7 @@
 
 #topmenu .move3 {
 	display:block;
-	width:250px;
+	width:175px;
 	font-size:20px;
 	font-weight:bold;
 	text-decoration:none;
@@ -159,7 +187,7 @@
 
 #topmenu .move4 {
 	display:block;
-	width:250px;
+	width:175px;
 	font-size:20px;
 	font-weight:bold;
 	text-decoration:none;
@@ -171,6 +199,11 @@
 
 #underproductinfo1 {
 	text-align:center;
+	margin-bottom: 40px;
+	font-size:100%;
+}
+
+#underproductinfo2 {
 	margin-bottom: 40px;
 	font-size:100%;
 }

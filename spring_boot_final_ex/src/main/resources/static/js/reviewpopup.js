@@ -13,28 +13,7 @@ $(document).ready(function(){
 		
 		var formData = $(this).serialize();
 		
-		/*const prdNo = $("#prdNo").val();
-		const memNo = $("#memNo").val();
-		const rating = $("select").val();
-		const revCon = $("textarea").val();
-		alert(prdNo);
-		alert(memNo);
-		alert(rating);
-		const data = {
-			prdNo : prdNo,
-			memNo : memNo,
-			rating : rating,
-			revCon : revCon
-		}*/
-		
-		/*$.ajax({
-			data : data,
-			type : 'POST',
-			url : '/review/Enroll',
-			success : function(result){
-				window.close();
-			}
-		});*/
+
 		
 		$.ajax({
 			type:"POST",

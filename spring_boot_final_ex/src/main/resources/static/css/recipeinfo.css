@@ -53,6 +53,9 @@
 	float:left;
 	display:none;
 }
+#timer_stop {
+	display:none;
+}
 
 .main_summary3 {
 	width:300px;
@@ -279,7 +282,6 @@
 	border-radius:10px;
 	padding:20px;
 	width:700px;
-	height:800px;
 	margin-top:20px;
 	margin-bottom:40px;
 }

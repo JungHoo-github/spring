@@ -23,7 +23,7 @@
 				<a href="<c:url value='/main'/>" id="mainPageBtn"><img src="./images/mainPageButton.png"></a> 	
 			    <a href="<c:url value='/myPage/${sessionScope.sno}'/>" id="mypageBtn"><img src="./images/mypageButton.png"></a>			
 				<a href="<c:url value='/logout'/>" id="logoutBtn"><img src="./images/logoutButton.png"></a> 	
-				<a href="<c:url value='/product/cartList/${sessionScope.sno}'/>" id="cartBtn"><img src="./images/cartButton.png"></a>
+				<a href="<c:url value='/productInfo/cartList'/>" id="cartBtn"><img src="./images/cartButton.png"></a>
 				<div id="Backgroundimg"><img src="./images/openOven.png" class="img"></div> 
 													
 			  </c:if> 

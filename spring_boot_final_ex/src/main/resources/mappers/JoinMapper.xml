@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="spring_boot_final.dao.IJoinDAO">
+	<resultMap id="memResult"
+		type="spring_boot_final.dao.IJoinDAO">
+		<result property="memId" column="memId" />
+		<result property="memPwd" column="memPwd" />
+		<result property="memName" column="memName" />
+		<result property="memEmail" column="memEmail" />
+		<result property="memJoinDate" column="memJoinDate" />
+		<result property="memHP" column="memHP" />
+		<result property="memZipcode"	column="memZipcode"	/>
+		<result property="memAllergyInfo"	column="memAllergyInfo"	/>
+		<result property="memAddress1"	column="memAddress1" />
+		<result property="memAddress2"	column="memAddress2" />
+	</resultMap>
+
+	<!-- 아이디 중복 체크 -->
+	<select id="memIdCheck" parameterType="string"
+		resultType="string">
+		SELECT memId FROM member WHERE memId=#{memId}
+	</select>
+
+	<!-- 회원가입 -->
+	<insert id="insertMember"
+		parameterType="spring_boot_final.model.JoinVO">
+		INSERT INTO member (memId, memPwd, memName, memEmail, memJoinDate, memHP, memZipcode, memAllergyInfo, memAddress1, memAddress2)
+		VALUES (#{memId}, #{memPwd}, #{memName}, #{memEmail}, #{memJoinDate}, #{memHP}, #{memZipcode}, #{memAllergyInfo}, #{memAddress1}, #{memAddress2})
+	</insert>
+
+	<!-- 회원정보 , 정보수정 -->
+	<select id="memberInfo" parameterType="string"
+		resultType="spring_boot_final.model.JoinVO">
+		SELECT * FROM member WHERE memId=#{memId}
+	</select>
+
+	<update id="memberUpdate"
+		parameterType="spring_boot_final.model.JoinVO">
+		UPDATE member SET memPwd=#{memPwd}, memName=#{memName}, memEmail=#{memEmail},
+		memHP=#{memHP}, memZipcode=#{memZipcode}, memAllergyInfo=#{memAllergyInfo},
+		memAddress1=#{memAddress1}, memAddress2=#{memAddress2} 
+		WHERE memId=#{memId}
+	</update>
+
+
+
+
+</mapper>

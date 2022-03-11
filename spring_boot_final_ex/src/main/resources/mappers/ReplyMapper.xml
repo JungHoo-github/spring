@@ -6,12 +6,12 @@
 <mapper namespace="spring_boot_final.dao.IReplyDAO">
 	
   		<insert id="insertReply" parameterType="spring_boot_final.model.ReplyVO">
-  			INSERT INTO reply ( repCon, memNo, brdNo)
-  			values ( #{repCon}, #{memNo},#{brdNo})
+  			INSERT INTO reply ( repCon, memNo, rcpNo)
+  			values ( #{repCon}, #{memNo},#{rcpNo})
   	    </insert> 	
   	    
   	    <select id="insertReplyForm" parameterType="int" resultType="spring_boot_final.model.ReplyVO">
-  	    	SELECT * FROM reply WHERE brdNo=#{brdNo} ORDER BY repNo=#{repNo} DESC
+  	    	SELECT * FROM reply WHERE rcpNo=#{rcpNo} ORDER BY repNo=#{repNo} DESC
   	    </select>
   	    <delete id="deleteReplyForm" parameterType="int">
   	    	DELETE FROM reply WHERE repNo=#{repNo};

@@ -5,6 +5,8 @@ package spring_boot_final.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,7 +29,7 @@ public class ProductController {
 	
 	//상품 구매 페이지로 이동
 		@RequestMapping("/product/productbuy/{prdNo}")
-		public String productbuy(@PathVariable int prdNo, Model model) {
+		public String productbuy(@PathVariable int prdNo, Model model,HttpSession session) {
 			ProductVO prd = service.productbuy(prdNo);			
 			model.addAttribute("prd", prd);
 			
@@ -59,7 +61,7 @@ public class ProductController {
 		ProductVO prd = service.getProductNoName(prdNo);
 		model.addAttribute("prd", prd);
 		model.addAttribute("memNo",memNo);
-		
+
 		return "/product/reviewEnroll";
 	}
 	

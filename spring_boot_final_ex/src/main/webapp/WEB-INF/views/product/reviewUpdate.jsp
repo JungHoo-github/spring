@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	<link href="<c:url value='/css/reviewpopup2.css'/>" rel="stylesheet" type="text/css">
+	<link href="<c:url value='/css/reviewpopup.css'/>" rel="stylesheet" type="text/css">
 	<script src="<c:url value='/js/jquery-3.6.0.min.js'/>"></script>
 	<script>
 		$(document).ready(function(){
@@ -31,7 +31,7 @@
 				
 			const revNo = '${reviewInfo.revNo}';
 			const prdNo = '${reviewInfo.prdNo}';
-			const memNo = '${memNo}';
+			const memNo = '${sno}';
 			const rating = $("select").val();
 			const revCon = $("textarea").val();
 			
@@ -66,7 +66,7 @@
 			<div class="prdName_div">
 				<h2>${prd.prdName }</h2>
 				<input type="hidden" name="prdNo" id="prdNo" value="${prd.prdNo }">
-				<input type="hidden" name="memNo" id="memNo" value="${memNo }">
+				<input type="hidden" name="memNo" id="memNo" value="${sno }">
 				
 			</div>
 			<div class="rating_div">

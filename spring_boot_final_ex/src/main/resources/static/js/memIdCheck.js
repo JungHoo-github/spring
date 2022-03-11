@@ -15,7 +15,7 @@
 			data:{"memId": $('#memId').val()},  
 			dataType:'text',
 			success:function(result){
-				if(result == "no_use"){
+				if(result == "use"){
 					alert("사용할 수 없는 ID입니다.");
 				}else{
 				    alert("사용 가능한 ID입니다.");

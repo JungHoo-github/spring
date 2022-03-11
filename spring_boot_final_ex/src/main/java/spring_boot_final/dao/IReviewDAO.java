@@ -6,6 +6,7 @@ import java.util.List;
 
 import spring_boot_final.model.CriteriaVO;
 import spring_boot_final.model.ReviewVO;
+import spring_boot_final.model.UpdateReviewVO;
 
 public interface IReviewDAO {
 	
@@ -22,7 +23,9 @@ public interface IReviewDAO {
 	public ReviewVO getUpdateReview(int revNo);	// 댓글 한개 정보(수정페이지)
 	
 	public int deleteReview(int revNo);	// 댓글 삭제
-
-
+	
+	public Double getRatingAverage(int prdNo);	// 평점 평균 구하기
+	
+	public int updateRating(UpdateReviewVO vo);	// 평점 평균 반영하기
 
 }

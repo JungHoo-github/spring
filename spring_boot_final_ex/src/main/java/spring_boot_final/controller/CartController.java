@@ -23,42 +23,61 @@ public class CartController {
 	// 장바구니에 추가
 	@RequestMapping("/productInfo/insertCart")
 	public String insertCart(CartVO vo, HttpSession session) {
+		System.out.print("bb");
 		// 로그인 성공 시 생성한 세션 sid값 가져와서 memId에 저장
-		String memNo = (String)session.getAttribute("sid");
-		vo.setMemNo(Integer.parseInt(memNo));
-		
+		int memNo = (int)session.getAttribute("sno");
+		vo.setMemNo(memNo);
+		System.out.print("vo"+vo);
 		// 동일 상품이 존재하는지 확인
-		int count = service.checkProductInCart(vo.getPrdNo(), Integer.parseInt(memNo));
 		
-		if(count == 0) { 	// 동일 상품이 존재하지 않으면 장바구니에 추가
-			service.insertCart(vo);
-		}else {		// 존재하면 주문수량 변경
-			service.updateQtyInCart(vo);
-		}
-		return "redirect:/productInfo/cartListView";
+		  int count = service.checkProductInCart(vo.getPrdNo(), memNo);
+		  
+		  if(count == 0) { // 동일 상품이 존재하지 않으면 장바구니에 추가 
+			  service.insertCart(vo); 
+		  }else {		  
+		  // 존재하면 주문수량 변경 
+		  service.updateQtyInCart(vo);
+		  }
+		 
+		return "redirect:/productInfo/cartList";
 	}
 	
-	// 장바구니 목록 보기
-	@RequestMapping("/productInfo/cartList/{memNo}")
-	public String cartList(@PathVariable("memNo") String memNo ,Model model, HttpSession session) {
+	@RequestMapping("/productInfo/cartList")
+	public String cartList(Model model, HttpSession session) {		
+		int memNo = (int) session.getAttribute("sno");
 		System.out.println("memNo : " + memNo);
-		ArrayList<CartVO> cartList = service.cartList(Integer.parseInt(memNo));
+		ArrayList<CartVO> cartList = service.cartList(memNo);
 		model.addAttribute("cartList", cartList);
 		
 		return "/productInfo/cartListView";
 	}
 	
+
+
+	/*
+	 * //장바구니 목록 보기
+	 * 
+	 * @RequestMapping("/productInfo/cartListView") public String cartList(Model
+	 * model, HttpSession session) { int memNo = (int)session.getAttribute("sno");
+	 * ArrayList<CartVO> cartList = service.cartList(memNo);
+	 * model.addAttribute("cartList", cartList);
+	 * 
+	 * return "productInfo/cartListView"; }
+	 */
 	// 장바구니 삭제
 	@ResponseBody
-	@RequestMapping("/productInfo/deleteCart")
+	@RequestMapping("/deleteCart")
 	public int deleteCart(@RequestParam("chbox[]") ArrayList<String> chkArr) {
+		System.out.println("aa");
 		int result = 0;
 		String cartNo ="";
 		
 		if(chkArr != null) {
 			for(String i : chkArr) {
 				cartNo = i;
+				System.out.print(cartNo);
 				service.deleteCart(Integer.parseInt(cartNo));
+				
 			}
 			result = 1;
 		}

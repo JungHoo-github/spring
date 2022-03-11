@@ -18,7 +18,7 @@ public class CriteriaVO {
 	}
 	
 	public CriteriaVO() {
-		this(1,10);
+		this(1,5);
 	}
 	
 	public String[] getTypeArr() {

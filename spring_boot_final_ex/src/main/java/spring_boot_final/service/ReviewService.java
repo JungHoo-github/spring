@@ -11,6 +11,7 @@ import spring_boot_final.model.CriteriaVO;
 import spring_boot_final.model.PageVO;
 import spring_boot_final.model.ReviewPageVO;
 import spring_boot_final.model.ReviewVO;
+import spring_boot_final.model.UpdateReviewVO;
 
 @Service
 public class ReviewService implements IReviewService {
@@ -23,6 +24,8 @@ public class ReviewService implements IReviewService {
 	public int enrollReview(ReviewVO vo) {
 		
 		int result = dao.enrollReview(vo);
+		
+		setRating(vo.getPrdNo());
 		
 		return result;
 	}
@@ -52,6 +55,8 @@ public class ReviewService implements IReviewService {
 	public int updateReview(ReviewVO vo) {
 		int result = dao.updateReview(vo);
 		
+		setRating(vo.getPrdNo());
+		
 		return result;
 	}
 	
@@ -64,7 +69,25 @@ public class ReviewService implements IReviewService {
 	public int deleteReview(ReviewVO vo) {
 		int result = dao.deleteReview(vo.getRevNo());
 		
+		setRating(vo.getPrdNo());
+		
 		return result;
 	}
 
+	public void setRating(int prdNo) {
+		Double ratingAvg = dao.getRatingAverage(prdNo);
+		
+		if(ratingAvg == null) {
+			ratingAvg = 0.0;
+		}
+		
+		ratingAvg = (double) (Math.round(ratingAvg*10));
+		ratingAvg = ratingAvg / 10;
+		
+		UpdateReviewVO uvo = new UpdateReviewVO();
+		uvo.setPrdNo(prdNo);
+		uvo.setRatingAvg(ratingAvg);
+		
+		dao.updateRating(uvo);
+	}
 }

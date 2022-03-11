@@ -30,12 +30,12 @@
 					
 					
 					$.ajax({
-						url:"deleteCart",
+						url:"/deleteCart",
 						type:"post",
 						data:{chbox : checkArr},
 						success:function(result){
 							if(result == 1){
-								location.href = "/productInfo/cartListView";
+								location.href = "/productInfo/cartList";
 							}
 						},
 						error:function(){

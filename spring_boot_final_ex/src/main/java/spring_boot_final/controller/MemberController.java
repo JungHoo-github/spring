@@ -74,30 +74,6 @@ public class MemberController {
 		session.invalidate();
 		return "redirect:/";
 	}
-	// 회원가입
-	@RequestMapping("/joinForm")
-	public String joinForm() {
-		
-		return "/member/joinForm";
-	}
-	
-
-	@ResponseBody
-	@RequestMapping(value = "/memIdCheck")
-	public String memIdCheck(@RequestBody String paramData) {
-
-		 System.out.println(paramData);
-		/* JSONObject json = new JsonObject(paramData) */
-		String checkVar = "no_use";
-
-		String memId_result = service.memIdCheck(paramData);
-		
-		if(memId_result != null) {
-			// System.out.println("use : " + memId_result);
-			checkVar = "use";
-		}
-		return checkVar;
-	}
 
 	//마이페이지
 	@RequestMapping("/myPage/{memNo}")

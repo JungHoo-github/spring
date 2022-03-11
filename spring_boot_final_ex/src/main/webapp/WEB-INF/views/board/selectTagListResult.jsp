@@ -29,7 +29,7 @@ table {
 
 table #blank {
 	height: 20px;
-	background-color:orange;
+	background-color:white;
 }
 
 #title {
