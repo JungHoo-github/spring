@@ -1,5 +1,7 @@
 package spring_boot_final.service;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,11 @@ public class RecipeService implements IRecipeService {
 	@Override
 	public RecipeVO recipeContent(String rcpContent) {
 		return dao.recipeContent(rcpContent);
+	}
+	
+	@Override
+	public ArrayList<RecipeVO> recipeinfoRoot(int rcpNo) {
+		return dao.recipeinfoRoot(rcpNo);
 	}
 
 }

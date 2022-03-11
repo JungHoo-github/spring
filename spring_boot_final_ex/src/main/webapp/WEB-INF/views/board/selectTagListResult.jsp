@@ -20,7 +20,6 @@
 
 table {
 	border-collapse: collapse;
-	width: 1000px;
 	background-color: #EDDBC3;
 	border-radius: 8px;
 	font-family: 'Do Hyeon', sans-serif;

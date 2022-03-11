@@ -98,8 +98,6 @@
 		<ul>
 			<li><a class="move1" name="jungbo" href="#jungbo">상품정보</a></li>
 			<li><a class="move" href="#review">상품리뷰</a></li>
-			<li><a class="move" href="#productqna">상품문의</a></li>
-			<li><a class="move" href="#chuchun">추천상품</a></li>
 		</ul>
 	</nav>
 	<div class="container2">
@@ -117,8 +115,6 @@
 		<ul>
 			<li><a class="move" href="#jungbo">상품정보</a></li>
 			<li><a class="move2" name="review" href="#review">상품리뷰</a></li>
-			<li><a class="move" href="#productqna">상품문의</a></li>
-			<li><a class="move" href="#chuchun">추천상품</a></li>
 		</ul>
 	</nav>
 	<div class="container4">
@@ -141,31 +137,6 @@
 		</div>
 			
 	</div>
-	<nav id="topmenu">
-		<ul>
-			<li><a class="move" href="#jungbo">상품정보</a></li>
-			<li><a class="move" href="#review">상품리뷰</a></li>
-			<li><a class="move3" name="productqna" href="#productqna">상품문의</a></li>
-			<li><a class="move" href="#chuchun">추천상품</a></li>
-		</ul>
-	</nav>
-	<div class="container2">
-		<div id="underproductinfo1">
-			<h1>Hello world4</h1>
-			<small>상품 문의 페이지입니다.</small>
-		</div>
-	</div>
-		<nav id="topmenu">
-			<ul>
-				<li><a class="move" href="#jungbo">상품정보</a></li>
-				<li><a class="move" href="#review">상품리뷰</a></li>
-				<li><a class="move" href="#productqna">상품문의</a></li>
-				<li><a class="move4" name="chuchun" href="#chuchun">추천상품</a></li>
-			</ul>
-		</nav>
-	<article class="container3">
-		<h3>추천상품</h3>
-	</article>
 	</div>
 	<div id="sub_menu2"><iframe width="380" height="315" src="https://www.youtube.com/embed/kev30RMy3Xc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 	</div>

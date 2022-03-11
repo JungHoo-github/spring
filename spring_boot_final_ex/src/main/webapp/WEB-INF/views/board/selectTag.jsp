@@ -37,13 +37,15 @@
 <style type="text/css">
 
 #warp {
-margin:0 auto;
-position:center;
+margin-top:10px;
+background-color:white;
+border-radius:10px;
+width:900px;
 font-family: 'Do Hyeon', sans-serif;
 }
 #tagList {
 width:70;
-height:200px;
+height:250px;
 positon:center;
 text-align:left;
 font-size:25px;
@@ -78,7 +80,8 @@ display:inline-block;
 </style>
 </head>
 <body>
-	<div id="wrap">
+<jsp:include page="/WEB-INF/views/layout/top.jsp" flush='true' />
+	<div id="warp">
 		<h2>TAG LIST</h2>
 		<p>원하는 태그를 선택해주세요!</p>
 		<hr>
@@ -123,5 +126,6 @@ display:inline-block;
 			<div id="searchResultbox"></div>
 		
 	</div>
+	<jsp:include page="/WEB-INF/views/layout/bottom.jsp" flush='true' />
 </body>
 </html>

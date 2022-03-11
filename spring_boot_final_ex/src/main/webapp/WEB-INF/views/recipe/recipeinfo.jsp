@@ -34,7 +34,7 @@
 				</div>
 				<div class="main_summary_info">
 					<span class="main_summary_info1">2인분</span>
-					<span class="main_summary_info2">10분이내</span>
+					<span class="main_summary_info2"></span>
 					<span class="main_summary_info3">아무나</span>
 				</div>
 			</div>

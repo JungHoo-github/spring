@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import spring_boot_final.model.ProductVO;
 import spring_boot_final.model.RecipeVO;
 import spring_boot_final.model.ReplyVO;
 import spring_boot_final.service.RecipeService;
@@ -23,15 +24,18 @@ public class RecipeinfoController {
 	@Autowired
 	ReplyService repService;
 
-	@RequestMapping("/recipe/recipeinfoRoot")
-	public String recipeinfoRoot() {
+	@RequestMapping("/recipe/recipeinfoRoot/{rcpNo}")
+	public String recipeinfoRoot(@PathVariable("rcpNo") int rcpNo, Model model) {
+		ArrayList<RecipeVO> rcpList = service.recipeinfoRoot(rcpNo);
+		model.addAttribute("rcpList", rcpList);
 
 		return "recipe/recipeinfoRoot";
 	}
+	
 
-	// 상품 구매 페이지로 이동
+	// 레시피 정보 페이지로 이동
 	@RequestMapping("/recipe/recipeinfo/{rcpNo}")
-	public String recipeinfo(@PathVariable int rcpNo, Model model, HttpSession session) {
+	public String recipeinfo(@PathVariable int rcpNo,Model model, HttpSession session) {
 		RecipeVO rcp = service.recipeinfo(rcpNo);
 		model.addAttribute("rcp", rcp);
 		
@@ -69,5 +73,6 @@ public class RecipeinfoController {
 		System.out.println("repNo" + repNo);
 		return "redirect:/insertReplyForm/{rcpNo}";
 	}
+	
 
 }

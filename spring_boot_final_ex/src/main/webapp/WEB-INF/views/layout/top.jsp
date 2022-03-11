@@ -31,12 +31,11 @@
 				<div id="mainMenuBox">
 					<ul id="menuItem">
 						<li><a href="<c:url value='/BoardList'/>">게시판</a></li>
-						<li><a href="<c:url value='/selectTag'/>">레시피</a></li>
+						<li><a href="<c:url value='/recipe/recipeinfoRoot/${sessionScope.sno }'/>">레시피</a></li>
 						<li><a href="<c:url value='/product/listAllProduct/${sessionScope.sno }'/>">재료</a></li>
-						<li><a href="<c:url value='/product/productbuy/${sessionScope.sno }'/>">제품구매</a></li>
 						<li><a href="<c:url value='/myPage/${sessionScope.sno}'/>">마이페이지</a></li>
 						<li><a href="<c:url value='/offlineMap'/>">매장정보</a></li>
-						
+						<li><a href="#">문의하기</a></li>
 					</ul>				
 				</div>  <!-- mainMenuBox 끝 -->
 			
