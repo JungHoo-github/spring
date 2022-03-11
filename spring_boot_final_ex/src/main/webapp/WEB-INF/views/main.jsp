@@ -53,5 +53,6 @@
 			
 			<!-- BOTTOM  -->
 		   <jsp:include page="/WEB-INF/views/layout/bottom.jsp" flush='true' />
+		   <jsp:include page="/WEB-INF/views/chatbot/chatbotForm.jsp" flush='true' />
 </body>
 </html>

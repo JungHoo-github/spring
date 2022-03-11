@@ -1,0 +1,192 @@
+@charset "UTF-8";
+
+#wrap { margin:0 auto; 	height: 100%; } 
+ 
+#chatBox {height: 300px; width: 94%; overflow-y:scroll; padding:10px 10px; background:#9bbbd4;} 	
+
+#chatBox1 {height: 100%; width: 94%; overflow-y:scroll; padding:10px 10px; background:#9bbbd4;} 	
+
+#message {width: 80%;}
+
+#btnSubmit {float: right; background:#eeeeee; height: 28px; padding-right:0;}
+
+.msgBox  span {padding:3px 5px; word-break:break-all; display:block; 
+							 max-width:300px; margin-bottom: 10px; border-radius: 10px;}
+							 
+.msgBox.send  span {background:#fef01b; float:right; }
+
+.msgBox #in {width:480px; background:#9bbbd4;}
+.msgBox.receive  span {background:#ffffff; float:left; }
+body {
+	margin: 0;
+	padding: 0;
+	font-family: "Lato", sans-serif;
+	background-color: #f6f7f9;
+  }
+  
+  h1 {
+	margin: 0;
+	font-size: 16px;
+	line-height: 1;
+  }
+  
+  button {
+	color: inherit;
+	background-color: transparent;
+	border: 0;
+	outline: 0 !important;
+	cursor: pointer;
+  }
+  button.chatform-open {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	width: 52px;
+	height: 52px;
+	color: #fff;
+	background-color: #e49101;
+	background-position: center center;
+	background-repeat: no-repeat;
+	box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.15);
+	border: 0;
+	border-radius: 50%;
+	cursor: pointer;
+	margin: 16px;
+  }
+  button.chatform-close {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	width: 52px;
+	height: 52px;
+	color: #fff;
+	background-color: #e49101;
+	background-position: center center;
+	background-repeat: no-repeat;
+	box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.15);
+	border: 0;
+	border-radius: 50%;
+	cursor: pointer;
+	display: none;
+	margin: 16px calc(2 * 16px + 52px) 16px 16px;
+  }
+  
+  textarea {
+	box-sizing: border-box;
+	width: 100%;
+	margin: 0;
+	height: calc(16px + 16px / 2);
+	padding: 0 calc(16px / 2);
+	font-family: inherit;
+	font-size: 16px;
+	line-height: calc(16px + 16px / 2);
+	color: #888;
+	background-color: none;
+	border: 0;
+	outline: 0 !important;
+	resize: none;
+	overflow: hidden;
+  }
+  textarea::-moz-placeholder {
+	color: #888;
+  }
+  textarea:-ms-input-placeholder {
+	color: #888;
+  }
+  textarea::placeholder {
+	color: #888;
+  }
+  
+  .chatform-popup {
+	display: flex;
+	position: absolute;
+	box-shadow: 5px 5px 25px 0 rgba(46, 61, 73, 0.2);
+	flex-direction: column;
+	display: none;
+	bottom: calc(2 * 16px + 52px);
+	right: 16px;
+	width: 377px;
+	height: auto;
+	background-color: #fff;
+	border-radius: 16px;
+  }
+  .chatform-popup .chatform-popup__header {
+	box-sizing: border-box;
+	display: flex;
+	width: 100%;
+	padding: 16px;
+	color: #fff;
+	background-color: #e49101;
+	align-items: center;
+	justify-content: space-around;
+	border-top-right-radius: 12px;
+	border-top-left-radius: 12px;
+  }
+  .chatform-popup .chatform-popup__header .chatform-popup__avatar {
+	margin-top: -32px;
+	background-color: #e49101;
+	border: 5px solid rgba(0, 0, 0, 0.1);
+	border-radius: 50%;
+  }
+  .chatform-popup .chatform-popup__main {
+	box-sizing: border-box;
+	width: 100%;
+	padding: calc(2 * 16px) 16px;
+	line-height: calc(16px + 16px / 2);
+	color: #888;
+	text-align: center;
+  }
+  .chatform-popup .chatform-popup__footer {
+	box-sizing: border-box;
+	display: flex;
+	width: 100%;
+	padding: 16px;
+	border-top: 1px solid #ddd;
+	align-items: center;
+	justify-content: space-around;
+	border-bottom-right-radius: 12px;
+	border-bottom-left-radius: 12px;
+  }
+  
+  .chatform-panel {
+	display: flex;
+	position: absolute;
+	box-shadow: 5px 5px 25px 0 rgba(46, 61, 73, 0.2);
+	flex-direction: column;
+	display: none;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 377px;
+	background-color: #fff;
+  }
+  .chatform-panel .chatform-panel__header {
+	box-sizing: border-box;
+	display: flex;
+	width: 100%;
+	padding: 16px;
+	color: #fff;
+	background-color: #e49101;
+	align-items: center;
+	justify-content: space-around;
+	flex: 0 0 auto;
+  }
+  .chatform-panel .chatform-panel__main {
+	box-sizing: border-box;
+	width: 100%;
+	padding: calc(2 * 16px) 16px;
+	line-height: calc(16px + 16px / 2);
+	color: #888;
+	text-align: center;
+	flex: 1 1 auto;
+  }
+  .chatform-panel .chatform-panel__footer {
+	box-sizing: border-box;
+	display: flex;
+	width: 100%;
+	padding: 16px;
+	border-top: 1px solid #ddd;
+	align-items: center;
+	justify-content: space-around;
+	flex: 0 0 auto;
+  }
