@@ -31,31 +31,31 @@
         center: 'title',
         right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
       },
-      initialDate: '2020-09-12',
+      initialDate: '2022-03-28',
       navLinks: true, // can click day/week names to navigate views
       businessHours: true, // display business hours
       editable: true,
       selectable: true,
       events: [
         {
-          title: 'Business Lunch',
-          start: '2020-09-03T13:00:00',
+          title: 'Park',
+          start: '2022-03-03T13:00:00',
           constraint: 'businessHours'
         },
         {
-          title: 'Meeting',
-          start: '2020-09-13T11:00:00',
+          title: 'Nam',
+          start: '2022-03-13T11:00:00',
           constraint: 'availableForMeeting', // defined below
           color: '#257e4a'
         },
         {
-          title: 'Conference',
-          start: '2020-09-18',
-          end: '2020-09-20'
+          title: 'Kim',
+          start: '2022-03-18',
+          end: '2022-03-20'
         },
         {
-          title: 'Party',
-          start: '2020-09-29T20:00:00'
+          title: 'All day Class',
+          start: '2022-03-29T20:00:00'
         },
 
         // areas where "Meeting" must be dropped
@@ -97,6 +97,7 @@
 <style>
 
   body {
+  background-image: url(../images/Background.png);
     margin: 40px 10px;
     padding: 0;
     font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
@@ -110,7 +111,7 @@
 
 </style>
 </head>
-<body>de page="/WEB-INF/views/layout/top.jsp" flush='true' />
+<body>
 
 
   <div id='calendar' style="position : relative;">
