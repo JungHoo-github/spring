@@ -105,6 +105,7 @@
   }
 
   #calendar {
+  background-color:white;
     max-width: 1100px;
     margin: 0 auto;
   }
