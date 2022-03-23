@@ -185,7 +185,7 @@
   <td role="gridcell" class="fc-daygrid-day fc-day fc-day-sat fc-day-future fc-day-other" data-date="2022-04-09" aria-labelledby="fc-dom-182">
   <div class="fc-daygrid-day-frame fc-scrollgrid-sync-inner"><div class="fc-daygrid-day-top"><a id="fc-dom-182" class="fc-daygrid-day-number" aria-label="April 9, 2022">9</a></div>
   <div class="fc-daygrid-day-events"><div class="fc-daygrid-day-bottom" style="margin-top: 0px;"></div></div>
-  <div class="fc-daygrid-day-bg"></div></div></td></tr></tbody></table></div></div></div></td></tr></tbody></table></div></div></div>
+  <div class="fc-daygrid-day-bg"></div></div></td></tr></tbody></table></div></div></div></td></tr></tbody></table></div></div></div></div>
 
        <jsp:include page="/WEB-INF/views/layout/bottom.jsp" flush='true' />
 </body>
