@@ -32,6 +32,10 @@ public class MemberController {
 	public String offlineMap() {
 		return "map/offlineMap";
 	}
+	@RequestMapping("/cal")
+	public String cal() {
+		return "map/cal";
+	}
 	
 	@RequestMapping("/product/cartList")
 	public String cartList() {
