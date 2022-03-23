@@ -35,7 +35,7 @@
 						<li><a href="<c:url value='/product/listAllProduct/${sessionScope.sno }'/>">재료</a></li>
 						<li><a href="<c:url value='/myPage/${sessionScope.sno}'/>">마이페이지</a></li>
 						<li><a href="<c:url value='/offlineMap'/>">매장정보</a></li>
-						<li><a href="#">문의하기</a></li>
+						<li><a href="<c:url value='/cal'/>">쿠킹클래스</a></li>
 					</ul>				
 				</div>  <!-- mainMenuBox 끝 -->
 			
