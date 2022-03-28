@@ -42,7 +42,7 @@
 					<div id="productBox">
 						<img src="<c:url value='/images/anni.png'/>">
 						<div class="product">
-							<div><a href="#"><img src="<c:url value='/images/prd01.png'/>"></a></div>
+							<div><a href="<c:url value='/recipe/recipeinfo/${rcp.rcpNo }'/>"><img src="<c:url value='/images/prd01.png'/>"></a></div>
 							<div><a href="#"><img src="<c:url value='/images/prd02.png'/>"></a></div>
 							<div><a href="#"><img src="<c:url value='/images/prd03.png'/>"></a></div>
 						</div>
